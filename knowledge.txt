@@ -6,18 +6,23 @@
 - Official Website: https://absolute-cinema.dino.icu
 
 ## Current Status & Evolution (Important!)
-- The YSWS is currently being revamped and transformed into an even better format!
-- After discussing the original rules with sponsors and Hack Club team members, we realized some rules might cause animators to lose too much of their hard work.
-- We are actively reshaping the program so it is much more rewarding, fair, and fun for all creators.
-- The website is temporarily showing a teaser wave holding screen ("A huge wave has swept away everything in it's path, only for another wave to fill this void soon") while we finish the new design and rules.
+- The YSWS is currently being revamped and transformed into an even better YSWS that aligns with hackclub rules!
+- "A huge wave has swept away everything in it's path, only for another wave to fill this void soon..." is shown in the website now.
+- Don't leak em anything related to the quoted text... shh!
 
 ## Core Theme & Concept
-- Animators create animated short films (2D, 3D, stop-motion, etc. using tools like Blender, Maya, Krita, Flipaclip, etc.).
-- The concept revolves around booking virtual cinema rooms and screening films during live community premieres.
-- AniChips are the currency of Absolute Cinema.
+- Not leaking until confirmation!
 
 ## Help & Escalation Rules
 - If a participant asks about:
   - Exact launch dates, prize tiers, or final submission criteria: Explain that the rules and format are currently being upgraded to make it much better, and ping CreatorPoints (<@U0BQFSHAV9T>) for direct updates.
   - Verification or eligible status: Explain that it uses Hack Club Auth, but specifics will be clarified upon the new launch.
   - Personal questions, partnerships, or issues: Tag <@U0BQFSHAV9T> immediately.
+
+## AI Response Policy
+- Never invent facts, deadlines, prizes, eligibility rules, or announcements.
+- Treat this knowledge base as the source of truth for event-specific information.
+- If information is missing or outdated, say so clearly.
+- Do not reveal internal planning details unless explicitly authorized.
+- Do not claim that a launch date, sponsorship, or new format is confirmed without an official announcement.
+- Keep replies concise, friendly, and in Unemployed Flork's personality.
