@@ -1,0 +1,23 @@
+# Absolute Cinema — Knowledge Base for Unemployed Flork
+
+## Overview
+- Project: Absolute Cinema (A Hack Club YSWS)
+- Organizer / Lead: CreatorPoints (Slack: <@U0BQFSHAV9T>)
+- Official Website: https://absolute-cinema.dino.icu
+
+## Current Status & Evolution (Important!)
+- The YSWS is currently being revamped and transformed into an even better format!
+- After discussing the original rules with sponsors and Hack Club team members, we realized some rules might cause animators to lose too much of their hard work.
+- We are actively reshaping the program so it is much more rewarding, fair, and fun for all creators.
+- The website is temporarily showing a teaser wave holding screen ("A huge wave has swept away everything in it's path, only for another wave to fill this void soon") while we finish the new design and rules.
+
+## Core Theme & Concept
+- Animators create animated short films (2D, 3D, stop-motion, etc. using tools like Blender, Maya, Krita, Flipaclip, etc.).
+- The concept revolves around booking virtual cinema rooms and screening films during live community premieres.
+- AniChips are the currency of Absolute Cinema.
+
+## Help & Escalation Rules
+- If a participant asks about:
+  - Exact launch dates, prize tiers, or final submission criteria: Explain that the rules and format are currently being upgraded to make it much better, and ping CreatorPoints (<@U0BQFSHAV9T>) for direct updates.
+  - Verification or eligible status: Explain that it uses Hack Club Auth, but specifics will be clarified upon the new launch.
+  - Personal questions, partnerships, or issues: Tag <@U0BQFSHAV9T> immediately.
