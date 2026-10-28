@@ -7,37 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-        color: #fff;
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-      .message {
-        max-width: 680px;
-        padding: 24px;
-        text-align: center;
-        font-size: clamp(16px, 2.4vw, 22px);
-        font-weight: 400;
-        line-height: 1.6;
-        letter-spacing: -0.01em;
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="message">
       A huge wave has swept away everything in it's path, only for another wave to fill this void soon...
     </div>
+    <audio id="bg-audio" src="assets/sound/seawaves.mp3" loop preload="auto"></audio>
+    <script src="js/app.js" defer></script>
   </body>
 </html>
