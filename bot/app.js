@@ -23,7 +23,7 @@ async function askAI(userPrompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: process.env.AI_MODEL || 'openrouter/free',
+      model: process.env.AI_MODEL || 'google/gemini-2.5-flash',
       messages: [
         {
           role: 'system',
