@@ -1,0 +1,13 @@
+{
+  "name": "gametale-bot",
+  "version": "1.0.0",
+  "description": "Slack bot for Game A Tale",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.21.4",
+    "dotenv": "^16.4.7"
+  }
+}
