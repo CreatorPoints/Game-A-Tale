@@ -23,7 +23,7 @@ async function askAI(userPrompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: process.env.AI_MODEL || 'meta-llama/llama-3.3-70b-instruct',
+      model: process.env.AI_MODEL || 'openrouter/free',
       messages: [
         {
           role: 'system',
