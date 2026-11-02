@@ -17,6 +17,9 @@ Thumbs.db
 
 # Node & Python
 node_modules/
+bot/
+backend/
+server/
 __pycache__/
 *.pyc
 
