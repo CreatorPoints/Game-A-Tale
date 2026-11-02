@@ -24,10 +24,11 @@ async function askAI(userPrompt) {
     },
     body: JSON.stringify({
       model: process.env.AI_MODEL || 'google/gemini-2.5-flash',
+      max_tokens: 220,
       messages: [
         {
           role: 'system',
-          content: `You are Village Storyteller (@storytale), to either help the players or chat with them on Game A Tale (An Official Hackclub YSWS). Follow the knowledge base and guidelines strictly:\n\n${knowledgeBase}`
+          content: `You are Village Storyteller (@storytale), to either help the players or chat with them on Game A Tale (An Official Hackclub YSWS). Keep replies punchy, witty, and strictly 1 to 3 sentences max—never write walls of text. Follow the knowledge base and guidelines strictly:\n\n${knowledgeBase}`
         },
         {
           role: 'user',
