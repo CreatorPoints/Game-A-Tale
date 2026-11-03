@@ -9,7 +9,7 @@ html {
   height: 100%;
   background-color: #000;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sniglet', cursive, sans-serif;
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
@@ -57,7 +57,7 @@ section {
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DynaPuff', cursive;
   font-size: clamp(40px, 7vw, 84px);
   margin: 0 0 16px 0;
   font-weight: 700;
@@ -65,14 +65,15 @@ h1 {
 }
 
 h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 54px);
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(38px, 6vw, 68px);
   margin: 0 0 16px 0;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 p {
+  font-family: 'Sniglet', cursive;
   font-size: clamp(16px, 2vw, 22px);
   max-width: 680px;
   margin: 0 auto;
@@ -80,9 +81,46 @@ p {
   color: #eee;
 }
 
+.sponsor-credit {
+  margin-top: 14px;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: #ffeb3b;
+}
+
+.sponsor-credit a {
+  color: #ffeb3b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.sponsor-credit a:hover {
+  opacity: 0.8;
+}
+
 section.is-visible .content-box {
   opacity: 1;
   transform: translateY(0);
+}
+
+.scroll-pill {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ff5722;
+  color: #fff;
+  padding: 14px 22px 14px 18px;
+  border-radius: 28px 0 0 28px;
+  box-shadow: -4px 6px 18px rgba(0, 0, 0, 0.45);
+  font-family: 'DynaPuff', cursive;
+  font-size: 16px;
+  z-index: 100;
+  user-select: none;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
