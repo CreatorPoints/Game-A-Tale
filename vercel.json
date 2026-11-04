@@ -11,7 +11,41 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(android|iphone|ipod|mobile).*"
+        }
+      ],
+      "destination": "/mobile/",
+      "permanent": false
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(android|iphone|ipod|mobile).*"
+        }
+      ],
+      "destination": "/mobile/",
+      "permanent": false
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/mobile",
+      "destination": "/mobile/index.html"
+    },
+    {
+      "source": "/mobile/(.*)",
+      "destination": "/mobile/$1"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

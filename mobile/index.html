@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Game A Tale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        background-color: #0b192c;
+        background-image: url('../assets/bg.png');
+        background-size: cover;
+        background-position: left bottom;
+        color: #fff;
+        font-family: 'Sniglet', cursive, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        touch-action: pan-x;
+        overscroll-behavior: none;
+        transition: background-position 0.5s cubic-bezier(0.37, 0, 0.63, 1);
+      }
+
+      .carousel-header {
+        padding: 16px 20px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .brand {
+        font-family: 'DynaPuff', cursive;
+        font-size: 18px;
+        color: #ffeb3b;
+      }
+
+      .badge {
+        font-size: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+
+      .carousel-viewport {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 20px 24px;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .carousel-viewport::-webkit-scrollbar {
+        display: none;
+      }
+
+      .carousel-card {
+        flex: 0 0 84vw;
+        max-width: 420px;
+        scroll-snap-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1.5px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 28px 22px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .carousel-card.active {
+        border-color: rgba(255, 235, 59, 0.6);
+        transform: scale(1.02);
+      }
+
+      .card-tag {
+        font-family: 'Gaegu', cursive;
+        font-size: 20px;
+        color: #ffeb3b;
+      }
+
+      h1 {
+        font-family: 'DynaPuff', cursive;
+        font-size: 30px;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      h2 {
+        font-family: 'Gaegu', cursive;
+        font-size: 28px;
+        margin: 0;
+        color: #fff;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #eee;
+        margin: 0;
+      }
+
+      .sponsor-box {
+        font-size: 14px;
+        color: #ffeb3b;
+        margin-top: 6px;
+      }
+
+      .sponsor-box a {
+        color: #ffeb3b;
+        text-decoration: underline;
+      }
+
+      .carousel-footer {
+        padding: 16px 20px 24px 20px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        z-index: 10;
+        padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      }
+
+      .dots {
+        display: flex;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.35);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        width: 28px;
+        border-radius: 999px;
+        background: #ffeb3b;
+      }
+
+      .swipe-hint {
+        font-size: 13px;
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="carousel-header">
+      <span class="brand">Game A Tale</span>
+      <span class="badge">A Hack Club YSWS</span>
+    </header>
+
+    <main class="carousel-viewport" id="viewport">
+      <article class="carousel-card active" id="card0">
+        <span class="card-tag">Scene 1 &bull; Beachhead</span>
+        <h1>Game A Tale</h1>
+        <p>A Hack Club YSWS where you ship a narrative game with an Oscar-worthy story.</p>
+        <div class="sponsor-box">
+          Sponsored by <a href="https://app.slack.com/client/E09V59WQY1E/D0C94HDHZ4H" target="_blank" rel="noopener noreferrer">@David</a> and <a href="https://app.slack.com/client/E09V59WQY1E/D0CCMEWPDS7" target="_blank" rel="noopener noreferrer">@ren</a>
+        </div>
+      </article>
+
+      <article class="carousel-card" id="card1">
+        <span class="card-tag">Scene 2 &bull; Campfire</span>
+        <h2>What Is It?</h2>
+        <p>A game jam dedicated to storytelling. Focus on rich characters, compelling worldbuilding, and interactive narrative design.</p>
+      </article>
+
+      <article class="carousel-card" id="card2">
+        <span class="card-tag">Scene 3 &bull; Forest Shrine</span>
+        <h2>The Goal</h2>
+        <p>Build and ship your narrative game. Selected top games will be featured in a live playthrough stream on YouTube and Twitch with @CreatorPoints.</p>
+      </article>
+
+      <article class="carousel-card" id="card3">
+        <span class="card-tag">Scene 4 &bull; Village Gate</span>
+        <h2>FAQ</h2>
+        <p>Open to high schoolers worldwide. Build in any engine you like, ship an open source repository, and share your playable build.</p>
+      </article>
+    </main>
+
+    <footer class="carousel-footer">
+      <div class="dots">
+        <button class="dot active" id="dot0" onclick="scrollToIndex(0)"></button>
+        <button class="dot" id="dot1" onclick="scrollToIndex(1)"></button>
+        <button class="dot" id="dot2" onclick="scrollToIndex(2)"></button>
+        <button class="dot" id="dot3" onclick="scrollToIndex(3)"></button>
+      </div>
+      <div class="swipe-hint">Swipe sideways to explore the island &rarr;</div>
+    </footer>
+
+    <script>
+      const viewport = document.getElementById('viewport');
+      const cards = [
+        document.getElementById('card0'),
+        document.getElementById('card1'),
+        document.getElementById('card2'),
+        document.getElementById('card3')
+      ];
+      const dots = [
+        document.getElementById('dot0'),
+        document.getElementById('dot1'),
+        document.getElementById('dot2'),
+        document.getElementById('dot3')
+      ];
+      const bgPositions = ['0%', '33%', '66%', '100%'];
+
+      const scrollToIndex = (index) => {
+        if (cards[index]) {
+          cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = cards.indexOf(entry.target);
+            if (index !== -1) {
+              dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+              cards.forEach((card, i) => card.classList.toggle('active', i === index));
+              document.body.style.backgroundPosition = `${bgPositions[index]} bottom`;
+            }
+          }
+        });
+      }, {
+        root: viewport,
+        threshold: 0.6
+      });
+
+      cards.forEach((card) => observer.observe(card));
+    </script>
+  </body>
+</html>

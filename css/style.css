@@ -53,7 +53,7 @@ section {
   opacity: 0;
   transform: translateY(24px);
   will-change: opacity, transform;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.8s cubic-bezier(0.37, 0, 0.63, 1), transform 0.8s cubic-bezier(0.37, 0, 0.63, 1);
 }
 
 h1 {
@@ -121,6 +121,90 @@ section.is-visible .content-box {
   z-index: 100;
   user-select: none;
   pointer-events: none;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 36px 42px 36px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  z-index: 100;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.brand-title {
+  font-family: 'DynaPuff', cursive;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffeb3b;
+  letter-spacing: -0.01em;
+}
+
+.brand-separator {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 18px;
+  user-select: none;
+}
+
+.hackclub-link {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hackclub-link:hover {
+  transform: scale(1.04);
+  opacity: 0.9;
+}
+
+.hackclub-flag {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.top-bar-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+  font-family: 'Gaegu', cursive;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+}
+
+.top-bar-right a {
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.top-bar-right a:hover {
+  color: #ffeb3b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.top-nav-sep {
+  color: rgba(255, 255, 255, 0.3);
+  user-select: none;
+}
+
+.top-nav-item {
+  color: #94a3b8;
+  user-select: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
