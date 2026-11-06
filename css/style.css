@@ -207,6 +207,109 @@ section.is-visible .content-box {
   user-select: none;
 }
 
+.faq-box {
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.8s cubic-bezier(0.37, 0, 0.63, 1), transform 0.8s cubic-bezier(0.37, 0, 0.63, 1), max-width 0.45s cubic-bezier(0.37, 0, 0.63, 1), max-height 0.45s cubic-bezier(0.37, 0, 0.63, 1), padding 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+  outline: none;
+}
+
+.faq-collapsed-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-expanded-view {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.faq-box.is-expanded {
+  cursor: default;
+  max-width: 860px;
+  width: 90vw;
+  max-height: 75vh;
+  padding: 36px 44px;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-box.is-expanded .faq-collapsed-view {
+  display: none;
+}
+
+.faq-box.is-expanded .faq-expanded-view {
+  display: flex;
+  opacity: 1;
+}
+
+.faq-expanded-view h2 {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(32px, 4.5vw, 48px);
+  color: #fff;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+}
+
+.faq-scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-height: calc(75vh - 120px);
+  scrollbar-width: thin;
+  scrollbar-color: #ffeb3b rgba(255, 255, 255, 0.1);
+}
+
+.faq-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.faq-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.faq-scroll-container::-webkit-scrollbar-thumb {
+  background: #ffeb3b;
+  border-radius: 3px;
+}
+
+.faq-scroll-container h3 {
+  font-family: 'DynaPuff', cursive;
+  font-size: clamp(18px, 2vw, 22px);
+  color: #ffeb3b;
+  margin: 24px 0 6px 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.faq-scroll-container h3:first-child {
+  margin-top: 0;
+}
+
+.faq-scroll-container p {
+  font-family: 'Sniglet', cursive;
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: #eee;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  max-width: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .content-box {
     opacity: 1;

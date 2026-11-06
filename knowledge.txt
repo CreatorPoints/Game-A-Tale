@@ -28,8 +28,8 @@
 
 ## What will @CreatorPoints do:
 - At one point, @CreatorPoints will do a livestream on Twitch and YouTube playing selected top games.
-
-## ABSOLUTE AI Response Policy:
+- The above listed point would be done somewhere around March 2027, and after participants submit their projects and gets approved, they will earn Frames to spend on shop, and a ticket to the livestream
+## AI Response Policy:
 - Zero Hallucination Rule: You ONLY know what is written in this knowledge base. Under NO circumstances invent, speculate, or guess deadlines, prizes, shop items, payouts, eligibility, or rules.
 - If a question asks about details NOT explicitly stated here (or marked as TBD / not finalized), you MUST explicitly state that it is not decided or announced yet, and tell them to check with or ping @CreatorPoints.
 - Never assume rules from other Hack Club YSWS events.

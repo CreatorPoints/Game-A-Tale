@@ -60,7 +60,29 @@ window.addEventListener('resize', () => {
   }
 });
 
+const faqBox = document.getElementById('faqBox');
+
+if (faqBox) {
+  faqBox.addEventListener('click', (event) => {
+    if (!faqBox.classList.contains('is-expanded')) {
+      faqBox.classList.add('is-expanded');
+    } else if (event.target.closest('h2')) {
+      faqBox.classList.remove('is-expanded');
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (faqBox.classList.contains('is-expanded') && !event.target.closest('#faqBox')) {
+      faqBox.classList.remove('is-expanded');
+    }
+  });
+}
+
 window.addEventListener('wheel', (event) => {
+  if (faqBox?.classList.contains('is-expanded') && event.target.closest('#faqBox')) {
+    return;
+  }
+
   event.preventDefault();
   const now = performance.now();
   if (isAnimating || now - lastScrollTime < cooldown) {
@@ -80,6 +102,12 @@ window.addEventListener('wheel', (event) => {
 }, { passive: false });
 
 window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && faqBox?.classList.contains('is-expanded')) {
+    event.preventDefault();
+    faqBox.classList.remove('is-expanded');
+    return;
+  }
+
   if (['input', 'textarea', 'select'].includes(event.target.tagName?.toLowerCase())) {
     return;
   }
@@ -108,6 +136,10 @@ window.addEventListener('touchstart', (event) => {
 }, { passive: true });
 
 window.addEventListener('touchend', (event) => {
+  if (faqBox?.classList.contains('is-expanded') && event.target.closest('#faqBox')) {
+    return;
+  }
+
   const deltaX = touchStartX - event.changedTouches[0].clientX;
   const deltaY = touchStartY - event.changedTouches[0].clientY;
 
