@@ -145,6 +145,62 @@ section.is-visible .content-box {
   transform: translateY(0);
 }
 
+.hero-cta-btn {
+  margin-top: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-family: 'DynaPuff', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 34px;
+  border: 2px solid #ffeb3b;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 0 #b45309, 0 0 18px rgba(255, 235, 59, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.hero-cta-btn .arrow {
+  color: #ffeb3b;
+  transition: transform 0.15s ease;
+}
+
+.hero-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #b45309, 0 0 26px rgba(255, 235, 59, 0.55);
+  background: rgba(255, 235, 59, 0.15);
+}
+
+.hero-cta-btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.hero-cta-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #b45309, 0 0 10px rgba(255, 235, 59, 0.25);
+}
+
+section.is-visible .hero-cta-btn {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.37, 0, 0.63, 1) 0.15s, transform 0.8s cubic-bezier(0.37, 0, 0.63, 1) 0.15s, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+section.is-visible .hero-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+section.is-visible .hero-cta-btn:active {
+  transform: translateY(3px);
+}
+
 .scroll-pill {
   position: fixed;
   right: 0;
@@ -353,7 +409,8 @@ section.is-visible .content-box {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .content-box {
+  .content-box,
+  .hero-cta-btn {
     opacity: 1;
     transform: none;
     transition: none;
