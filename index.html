@@ -6,7 +6,7 @@
     <title>Game A Tale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=block" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <noscript>
       <style>
@@ -14,10 +14,21 @@
           opacity: 1 !important;
           transform: none !important;
         }
+        .entry-overlay {
+          display: none !important;
+        }
+        .entry-prompt {
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
       </style>
     </noscript>
   </head>
   <body>
+    <div class="entry-overlay" id="entryOverlay">
+      <span class="entry-prompt">Click to start the journey!</span>
+    </div>
+
     <header class="top-bar">
       <div class="top-bar-left">
         <span class="brand-title">Game A Tale</span>
@@ -79,9 +90,27 @@
 	    
             <h3>Is this free?</h3>
             <p>Yes! Its fully free, join now and earn awesome prizes!</p>
+            
+            <h3>How long will this YSWS last?</h3>
+            <p>Its still TBD... but it would not end before March 2027.</p>
+            
+            <h3>Whats 'Frames'?</h3>
+            <p>'Frames' is the currency of this YSWS. 10 Frames = $1</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="cta-slide">
+      <div class="firefly f1" aria-hidden="true"></div>
+      <div class="firefly f2" aria-hidden="true"></div>
+      <div class="firefly f3" aria-hidden="true"></div>
+      <div class="firefly f4" aria-hidden="true"></div>
+      <div class="firefly f5" aria-hidden="true"></div>
+      <svg class="cta-hills" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,900 Q280,780 600,830 T1200,810 T1920,800 L1920,1080 L0,1080 Z" fill="#0d0914" opacity="0.9"/>
+        <path d="M0,940 Q380,860 800,890 T1500,870 T1920,880 L1920,1080 L0,1080 Z" fill="#050308"/>
+      </svg>
       <button class="hero-cta-btn" id="heroCtaBtn" type="button">Join Now!</button>
     </section>
 
@@ -93,3 +122,4 @@
     <script src="js/app.js" defer></script>
   </body>
 </html>
+
