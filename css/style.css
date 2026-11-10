@@ -163,6 +163,7 @@ section.is-visible .content-box {
   align-items: center;
   gap: 10px;
   user-select: none;
+  text-decoration: none;
   opacity: 0;
   transform: translateY(24px);
 }
