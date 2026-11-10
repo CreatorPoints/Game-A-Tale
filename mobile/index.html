@@ -6,7 +6,7 @@
     <title>Game A Tale</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500;700&family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=block" rel="stylesheet">
     <style>
       * {
         box-sizing: border-box;
@@ -33,26 +33,112 @@
         transition: background-position 0.5s cubic-bezier(0.37, 0, 0.63, 1);
       }
 
+      .entry-overlay {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #000;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+      }
+
+      .entry-overlay.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .entry-prompt {
+        font-family: 'DynaPuff', cursive;
+        font-size: clamp(20px, 5.5vw, 28px);
+        font-weight: 700;
+        color: #ffeb3b;
+        text-align: center;
+        padding: 24px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      .entry-prompt.is-ready {
+        opacity: 1;
+        visibility: visible;
+      }
+
       .carousel-header {
-        padding: 16px 20px;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+        padding: 12px 18px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 75%, transparent 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 10;
+      }
+
+      .header-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 10;
+        width: 100%;
+      }
+
+      .header-brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .brand {
         font-family: 'DynaPuff', cursive;
-        font-size: 18px;
+        font-size: 19px;
+        font-weight: 700;
         color: #ffeb3b;
       }
 
-      .badge {
-        font-size: 12px;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 4px 10px;
+      .hackclub-link {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .hackclub-flag {
+        height: 24px;
+        width: auto;
+      }
+
+      .nav-links-row {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .nav-links-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links-row a {
+        color: #ccc;
+        font-size: 11px;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 3px 8px;
         border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+
+      .nav-links-row a:hover,
+      .nav-links-row a:active {
+        color: #ffeb3b;
+        border-color: #ffeb3b;
       }
 
       .carousel-viewport {
@@ -62,7 +148,7 @@
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 20px 24px;
+        padding: 12px 20px;
         gap: 16px;
         align-items: center;
       }
@@ -72,72 +158,230 @@
       }
 
       .carousel-card {
-        flex: 0 0 84vw;
+        flex: 0 0 86vw;
         max-width: 420px;
+        max-height: calc(100dvh - 165px);
+        overflow-y: auto;
         scroll-snap-align: center;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.72);
         border: 1.5px solid rgba(255, 255, 255, 0.15);
         border-radius: 20px;
-        padding: 28px 22px;
+        padding: 24px 20px;
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
         display: flex;
         flex-direction: column;
         gap: 12px;
+        text-align: center;
         transition: transform 0.3s ease, border-color 0.3s ease;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
       }
 
       .carousel-card.active {
         border-color: rgba(255, 235, 59, 0.6);
-        transform: scale(1.02);
+        transform: scale(1.015);
       }
 
       .card-tag {
         font-family: 'Gaegu', cursive;
-        font-size: 20px;
+        font-size: 19px;
         color: #ffeb3b;
+        font-weight: 700;
       }
 
       h1 {
         font-family: 'DynaPuff', cursive;
-        font-size: 30px;
+        font-size: clamp(26px, 6.5vw, 32px);
         margin: 0;
         line-height: 1.2;
+        font-weight: 700;
       }
 
       h2 {
         font-family: 'Gaegu', cursive;
-        font-size: 28px;
+        font-size: clamp(28px, 7vw, 34px);
         margin: 0;
         color: #fff;
+        font-weight: 700;
+        line-height: 1.15;
       }
 
       p {
-        font-size: 16px;
-        line-height: 1.6;
+        font-size: 15px;
+        line-height: 1.55;
         color: #eee;
         margin: 0;
       }
 
       .sponsor-box {
-        font-size: 14px;
+        font-size: 13px;
         color: #ffeb3b;
-        margin-top: 6px;
+        margin-top: 4px;
+        line-height: 1.45;
       }
 
       .sponsor-box a {
         color: #ffeb3b;
         text-decoration: underline;
+        text-underline-offset: 2px;
       }
 
-      .carousel-footer {
-        padding: 16px 20px 24px 20px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      .village-list {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+      }
+
+      .village-list li {
+        font-size: 14px;
+        line-height: 1.45;
+        color: #eee;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .village-list li::before {
+        content: '✦';
+        color: #ffeb3b;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .village-item-title {
+        font-family: 'DynaPuff', cursive;
+        font-size: 14px;
+        color: #ffeb3b;
+        font-weight: 700;
+      }
+
+      .village-footer {
+        font-family: 'Gaegu', cursive;
+        font-size: 24px;
+        color: #fff;
+        margin-top: 4px;
+      }
+
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        text-align: left;
+        margin-top: 4px;
+      }
+
+      .faq-item h3 {
+        font-family: 'DynaPuff', cursive;
+        font-size: 15px;
+        font-weight: 700;
+        color: #ffeb3b;
+        margin: 0 0 4px 0;
+        line-height: 1.3;
+      }
+
+      .faq-item p {
+        font-size: 13.5px;
+        line-height: 1.5;
+        color: #ddd;
+        margin: 0;
+      }
+
+      .cta-card {
+        background: linear-gradient(180deg, #060914 0%, #151326 60%, #2b1c2b 85%, #180d18 100%);
+        border-color: rgba(255, 235, 59, 0.4);
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        padding: 32px 20px;
+      }
+
+      .cta-card-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .cta-hills-mobile {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        pointer-events: none;
+      }
+
+      .firefly {
+        position: absolute;
+        border-radius: 50%;
+        background: #ffeb3b;
+        box-shadow: 0 0 8px #ffeb3b, 0 0 16px #8bc34a;
+        animation: glowDrift 7s infinite ease-in-out alternate;
+        pointer-events: none;
+      }
+
+      .f1 { width: 4px; height: 4px; left: 18%; top: 30%; animation-duration: 5.5s; }
+      .f2 { width: 5px; height: 5px; left: 45%; top: 18%; animation-duration: 7s; animation-delay: 1s; }
+      .f3 { width: 4px; height: 4px; left: 78%; top: 25%; animation-duration: 6s; animation-delay: 0.6s; }
+      .f4 { width: 3px; height: 3px; left: 28%; top: 62%; animation-duration: 8s; animation-delay: 2s; }
+      .f5 { width: 4px; height: 4px; left: 82%; top: 58%; animation-duration: 6.5s; animation-delay: 2.5s; }
+
+      @keyframes glowDrift {
+        0% { transform: translate(0, 0); opacity: 0.3; }
+        50% { opacity: 0.95; }
+        100% { transform: translate(16px, -20px); opacity: 0.25; }
+      }
+
+      .cta-card-content {
+        position: relative;
+        z-index: 5;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 12px;
+        width: 100%;
+      }
+
+      .hero-cta-btn {
+        margin-top: 8px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-family: 'DynaPuff', cursive;
+        font-size: 17px;
+        font-weight: 700;
+        padding: 13px 32px;
+        border: 2px solid #ffeb3b;
+        border-radius: 999px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 0 #b45309, 0 0 18px rgba(255, 235, 59, 0.35);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        text-decoration: none;
+      }
+
+      .hero-cta-btn:active {
+        transform: translateY(3px);
+        box-shadow: 0 1px 0 #b45309, 0 0 8px rgba(255, 235, 59, 0.25);
+      }
+
+      .carousel-footer {
+        padding: 10px 20px 18px 20px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.88), transparent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
         z-index: 10;
-        padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
       }
 
       .dots {
@@ -157,7 +401,7 @@
       }
 
       .dot.active {
-        width: 28px;
+        width: 26px;
         border-radius: 999px;
         background: #ffeb3b;
       }
@@ -165,69 +409,302 @@
       .swipe-hint {
         font-size: 13px;
         color: #aaa;
+        user-select: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .swipe-hint.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body {
+          transition: none;
+        }
+        .carousel-card {
+          transition: none;
+        }
+        .firefly {
+          animation: none;
+        }
+        .entry-overlay {
+          transition: none;
+        }
+        .entry-prompt {
+          transition: none;
+        }
       }
     </style>
+    <noscript>
+      <style>
+        .entry-overlay {
+          display: none !important;
+        }
+        .entry-prompt {
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
+    <div class="entry-overlay" id="entryOverlay">
+      <span class="entry-prompt">Click to start the journey!</span>
+    </div>
+
     <header class="carousel-header">
-      <span class="brand">Game A Tale</span>
-      <span class="badge">A Hack Club YSWS</span>
+      <div class="header-top">
+        <div class="header-brand-wrap">
+          <span class="brand">Game A Tale</span>
+          <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer" class="hackclub-link" aria-label="Hack Club">
+            <img src="../assets/hackclub-flag.svg" alt="Hack Club" class="hackclub-flag">
+          </a>
+        </div>
+      </div>
+      <nav class="nav-links-row" aria-label="Program and legal links">
+        <a href="https://forms.hackclub.com/bounty" target="_blank" rel="noopener noreferrer">Fulfillment Bounty</a>
+        <a href="https://hackclub.com/privacy-and-terms#hack-club-standard-terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms</a>
+        <a href="https://hackclub.com/privacy-and-terms#hack-club-privacy-notice" target="_blank" rel="noopener noreferrer">Privacy</a>
+        <a href="https://security.hackclub.com/" target="_blank" rel="noopener noreferrer">Security Bounty</a>
+      </nav>
     </header>
 
     <main class="carousel-viewport" id="viewport">
       <article class="carousel-card active" id="card0">
         <span class="card-tag">Scene 1 &bull; Beachhead</span>
         <h1>Game A Tale</h1>
-        <p>A Hack Club YSWS where you ship a narrative game with an Oscar-worthy story.</p>
+        <p>A Hack Club YSWS where you ship your own narrative game, and get AWESOME rewards!</p>
         <div class="sponsor-box">
-          Sponsored by <a href="https://app.slack.com/client/E09V59WQY1E/D0C94HDHZ4H" target="_blank" rel="noopener noreferrer">@David</a> and <a href="https://app.slack.com/client/E09V59WQY1E/D0CCMEWPDS7" target="_blank" rel="noopener noreferrer">@ren</a>
+          Sponsored by <a href="https://app.slack.com/client/E09V59WQY1E/D0C94HDHZ4H" target="_blank" rel="noopener noreferrer">@David</a> and <a href="https://app.slack.com/client/E09V59WQY1E/D0CCMEWPDS7" target="_blank" rel="noopener noreferrer">@ren</a> | Org @CreatorPoints
         </div>
       </article>
 
       <article class="carousel-card" id="card1">
         <span class="card-tag">Scene 2 &bull; Campfire</span>
-        <h2>What Is It?</h2>
-        <p>A game jam dedicated to storytelling. Focus on rich characters, compelling worldbuilding, and interactive narrative design.</p>
+        <h2>What's This "YSWS"?</h2>
+        <p>YSWS is a "You Ship We Ship" program where you make a fire game, with rich storytelling and creativity. Oooh... @CreatorPoints says that he would even play some of the best games made, handpicked!</p>
       </article>
 
       <article class="carousel-card" id="card2">
-        <span class="card-tag">Scene 3 &bull; Forest Shrine</span>
-        <h2>The Goal</h2>
-        <p>Build and ship your narrative game. Selected top games will be featured in a live playthrough stream on YouTube and Twitch with @CreatorPoints.</p>
+        <span class="card-tag">Scene 3 &bull; The Village</span>
+        <h2>What's there in the village?</h2>
+        <p>When you reach the village, your story is told all over the village, and villagers reward your valiant stories with rewards like</p>
+        <ul class="village-list">
+          <li><span class="village-item-title">$100 Steam Developer Grant</span> &mdash; To list your awesome game on Steam!</li>
+          <li><span class="village-item-title">$5 Steam Gift Card</span> &mdash; An excuse to play games lol!</li>
+          <li><span class="village-item-title">Drawing Tab Grant</span> &mdash; Draw better characters :3</li>
+        </ul>
+        <div class="village-footer">And much more!</div>
       </article>
 
       <article class="carousel-card" id="card3">
         <span class="card-tag">Scene 4 &bull; Village Gate</span>
-        <h2>FAQ</h2>
-        <p>Open to high schoolers worldwide. Build in any engine you like, ship an open source repository, and share your playable build.</p>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>Whats Hack Club?</h3>
+            <p>Hack Club is a 501(c)(3) nonprofit organisation that empowers teenagers aged 13–18 to learn programming, engineering, and technology through hands-on projects, hackathons, and community-driven initiatives. It provides resources, mentorship, and opportunities for young creators to turn their ideas into real-world projects.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this free?</h3>
+            <p>Yes! Its fully free, join now and earn awesome prizes!</p>
+          </div>
+          <div class="faq-item">
+            <h3>How long will this YSWS last?</h3>
+            <p>Its still TBD... but it would not end before March 2027.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Whats 'Frames'?</h3>
+            <p>'Frames' is the currency of this YSWS. 10 Frames = $1</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="carousel-card cta-card" id="card4">
+        <div class="cta-card-bg" aria-hidden="true">
+          <div class="firefly f1"></div>
+          <div class="firefly f2"></div>
+          <div class="firefly f3"></div>
+          <div class="firefly f4"></div>
+          <div class="firefly f5"></div>
+          <svg class="cta-hills-mobile" viewBox="0 0 400 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,130 Q90,100 200,120 T400,110 L400,200 L0,200 Z" fill="#0d0914" opacity="0.9"/>
+            <path d="M0,150 Q110,130 220,140 T400,135 L400,200 L0,200 Z" fill="#050308"/>
+          </svg>
+        </div>
+        <div class="cta-card-content">
+          <span class="card-tag">Scene 5 &bull; The Horizon</span>
+          <h2>The pen is yours now</h2>
+          <p>This was the story of the ysws, now its upon you to craft your own for your game!</p>
+          <button class="hero-cta-btn" id="heroCtaBtn" type="button">Join Now!</button>
+        </div>
       </article>
     </main>
 
     <footer class="carousel-footer">
       <div class="dots">
-        <button class="dot active" id="dot0" onclick="scrollToIndex(0)"></button>
-        <button class="dot" id="dot1" onclick="scrollToIndex(1)"></button>
-        <button class="dot" id="dot2" onclick="scrollToIndex(2)"></button>
-        <button class="dot" id="dot3" onclick="scrollToIndex(3)"></button>
+        <button class="dot active" id="dot0" onclick="scrollToIndex(0)" aria-label="Go to slide 1"></button>
+        <button class="dot" id="dot1" onclick="scrollToIndex(1)" aria-label="Go to slide 2"></button>
+        <button class="dot" id="dot2" onclick="scrollToIndex(2)" aria-label="Go to slide 3"></button>
+        <button class="dot" id="dot3" onclick="scrollToIndex(3)" aria-label="Go to slide 4"></button>
+        <button class="dot" id="dot4" onclick="scrollToIndex(4)" aria-label="Go to slide 5"></button>
       </div>
-      <div class="swipe-hint">Swipe sideways to explore the island &rarr;</div>
+      <div class="swipe-hint" id="swipeHint">Swipe sideways to explore the island &rarr;</div>
     </footer>
 
     <script>
+      const audioShore = new Audio('../assets/audio/seashore.mp3');
+      const audioGulls = new Audio('../assets/audio/gulls.mp3');
+      const audioForest = new Audio('../assets/audio/forest.mp3');
+      const audioFifth = new Audio('../assets/audio/5thmovement.mp3');
+
+      audioShore.preload = 'auto';
+      audioGulls.preload = 'auto';
+      audioForest.preload = 'auto';
+      audioFifth.preload = 'auto';
+
+      audioShore.loop = true;
+      audioGulls.loop = true;
+      audioForest.loop = true;
+      audioFifth.loop = true;
+
+      audioShore.volume = 0;
+      audioGulls.volume = 0;
+      audioForest.volume = 0;
+      audioFifth.volume = 0;
+
+      const fadeAudio = (audio, targetVol, fadeDuration = 1200) => {
+        const fadeToken = Symbol();
+        audio._fadeToken = fadeToken;
+
+        if (targetVol > 0 && audio.paused) {
+          audio.play().catch(() => {});
+        }
+
+        const startVol = audio.volume;
+        const startTime = performance.now();
+
+        const step = (now) => {
+          if (audio._fadeToken !== fadeToken) {
+            return;
+          }
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / fadeDuration, 1);
+          audio.volume = Math.max(0, Math.min(1, startVol + (targetVol - startVol) * progress));
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            audio.volume = targetVol;
+            if (targetVol === 0) {
+              audio.pause();
+            }
+          }
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      let currentAudioGroup = null;
+
+      const updateAudioForScene = (sceneIndex) => {
+        let targetGroup = 'forest';
+        if (sceneIndex === 0) {
+          targetGroup = 'shore';
+        } else if (sceneIndex === 4) {
+          targetGroup = 'fifth';
+        }
+
+        if (targetGroup === currentAudioGroup) {
+          return;
+        }
+        currentAudioGroup = targetGroup;
+
+        if (targetGroup === 'shore') {
+          fadeAudio(audioForest, 0);
+          fadeAudio(audioFifth, 0);
+          fadeAudio(audioShore, 0.65);
+          fadeAudio(audioGulls, 0.35);
+        } else if (targetGroup === 'fifth') {
+          fadeAudio(audioShore, 0);
+          fadeAudio(audioGulls, 0);
+          fadeAudio(audioForest, 0);
+          fadeAudio(audioFifth, 0.65);
+        } else {
+          fadeAudio(audioShore, 0);
+          fadeAudio(audioGulls, 0);
+          fadeAudio(audioFifth, 0);
+          fadeAudio(audioForest, 0.6);
+        }
+      };
+
+      let hasUserInteracted = false;
+
+      const initAudioOnInteraction = () => {
+        if (hasUserInteracted) {
+          return;
+        }
+        hasUserInteracted = true;
+        currentAudioGroup = null;
+        updateAudioForScene(currentCardIndex);
+      };
+
+      ['click', 'keydown', 'touchstart', 'pointerdown'].forEach((event) => {
+        window.addEventListener(event, initAudioOnInteraction, { passive: true });
+      });
+
+      const entryOverlay = document.getElementById('entryOverlay');
+      const entryPrompt = document.querySelector('.entry-prompt');
+
+      const revealEntryPrompt = () => {
+        if (entryPrompt) {
+          entryPrompt.classList.add('is-ready');
+        }
+      };
+
+      if (document.fonts && document.fonts.ready) {
+        Promise.race([
+          document.fonts.ready,
+          new Promise((resolve) => setTimeout(resolve, 2000))
+        ]).then(revealEntryPrompt);
+      } else {
+        revealEntryPrompt();
+      }
+
+      const dismissOverlay = () => {
+        if (!entryOverlay || entryOverlay.classList.contains('is-hidden')) {
+          return;
+        }
+        entryOverlay.classList.add('is-hidden');
+        hasUserInteracted = true;
+        currentAudioGroup = null;
+        updateAudioForScene(currentCardIndex);
+      };
+
+      if (entryOverlay) {
+        entryOverlay.addEventListener('click', dismissOverlay);
+        entryOverlay.addEventListener('touchend', dismissOverlay);
+      }
+
       const viewport = document.getElementById('viewport');
       const cards = [
         document.getElementById('card0'),
         document.getElementById('card1'),
         document.getElementById('card2'),
-        document.getElementById('card3')
+        document.getElementById('card3'),
+        document.getElementById('card4')
       ];
       const dots = [
         document.getElementById('dot0'),
         document.getElementById('dot1'),
         document.getElementById('dot2'),
-        document.getElementById('dot3')
+        document.getElementById('dot3'),
+        document.getElementById('dot4')
       ];
-      const bgPositions = ['0%', '33%', '66%', '100%'];
+      const swipeHint = document.getElementById('swipeHint');
+      const bgPositions = ['0%', '25%', '50%', '75%', '100%'];
+      let currentCardIndex = 0;
 
       const scrollToIndex = (index) => {
         if (cards[index]) {
@@ -240,9 +717,16 @@
           if (entry.isIntersecting) {
             const index = cards.indexOf(entry.target);
             if (index !== -1) {
+              currentCardIndex = index;
               dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
               cards.forEach((card, i) => card.classList.toggle('active', i === index));
               document.body.style.backgroundPosition = `${bgPositions[index]} bottom`;
+              if (swipeHint) {
+                swipeHint.classList.toggle('is-hidden', index === cards.length - 1);
+              }
+              if (hasUserInteracted) {
+                updateAudioForScene(index);
+              }
             }
           }
         });
@@ -251,7 +735,11 @@
         threshold: 0.6
       });
 
-      cards.forEach((card) => observer.observe(card));
+      cards.forEach((card) => {
+        if (card) {
+          observer.observe(card);
+        }
+      });
     </script>
   </body>
 </html>

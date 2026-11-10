@@ -207,6 +207,22 @@ section.is-visible .hero-cta-btn:active {
   background: linear-gradient(180deg, #060914 0%, #151326 60%, #2b1c2b 85%, #180d18 100%);
 }
 
+.cta-header {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 24px;
+  max-width: 680px;
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+  transition: opacity 0.8s cubic-bezier(0.37, 0, 0.63, 1), transform 0.8s cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+section.is-visible .cta-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .cta-slide .hero-cta-btn {
   margin-top: 0;
   position: relative;
@@ -262,6 +278,13 @@ section.is-visible .hero-cta-btn:active {
   z-index: 100;
   user-select: none;
   pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+.scroll-pill.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(24px);
 }
 
 .top-bar {
@@ -491,7 +514,8 @@ section.is-visible .hero-cta-btn:active {
 
 @media (prefers-reduced-motion: reduce) {
   .content-box,
-  .hero-cta-btn {
+  .hero-cta-btn,
+  .cta-header {
     opacity: 1;
     transform: none;
     transition: none;

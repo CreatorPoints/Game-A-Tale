@@ -113,6 +113,13 @@ updateAudioForScene(currentIndex);
 
 const entryOverlay = document.getElementById('entryOverlay');
 const entryPrompt = document.querySelector('.entry-prompt');
+const scrollPill = document.querySelector('.scroll-pill');
+
+const updateScrollPill = (index) => {
+  if (scrollPill) {
+    scrollPill.classList.toggle('is-hidden', index >= sections.length - 1);
+  }
+};
 
 const revealEntryPrompt = () => {
   if (entryPrompt) {
@@ -156,6 +163,7 @@ const goToScene = (index) => {
   }
 
   updateAudioForScene(targetIndex);
+  updateScrollPill(targetIndex);
 
   const startScroll = window.scrollX;
   const targetScroll = targetIndex * window.innerWidth;
@@ -163,6 +171,7 @@ const goToScene = (index) => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     window.scrollTo(targetScroll, 0);
     currentIndex = targetIndex;
+    updateScrollPill(targetIndex);
     return;
   }
 
@@ -196,9 +205,12 @@ window.addEventListener('scroll', () => {
     if (nextIndex !== currentIndex) {
       currentIndex = nextIndex;
       updateAudioForScene(currentIndex);
+      updateScrollPill(currentIndex);
     }
   }
 }, { passive: true });
+
+updateScrollPill(currentIndex);
 
 window.addEventListener('resize', () => {
   if (!isAnimating) {
