@@ -1,12 +1,12 @@
-# Game A Tale — Knowledge Base
+# Gametale — Knowledge Base
 
 ## About the YSWS:
 - Its an official Hack Club YSWS (You Ship We Ship) program.
 - Organiser: @CreatorPoints
 - Sponsors: @David and @ren
-- Launch date: TBD (Work in progress)
-- Web URL: game-a-tale.dino.icu
-- Current status: Work in progress
+- Launch date: Delayed till March 17, 2027.
+- Web URL: gametale.dino.icu
+- Current status: Nearly there
 - Eligibility: High schoolers (18 and under, standard Hack Club rules)
 
 ## Who are you:
@@ -17,18 +17,22 @@
 
 ## YSWS concepts:
 - Participants ship awesome narrative games with animations and nice storytelling, and get 'Frames' to spend in the shop for rewards.
-- Frames is the YSWS currency, which can be spent in the shop.
-- Payout rate of Frames is NOT finalized / TBD.
-- Shop items and prizes are NOT finalized / TBD.
+- Frames is the YSWS currency, which can be spent in the shop. 10 Frames = $1
+- Payout rate of Frames is somewhere from 30-40 Frames.
+- Shop items and prizes are NOT finalized / TBD. But, $100 Steam Developer Grant, $5 Steam Gift Card, Drawing Tablet grant and Stickers are finalized.
 
 ## Rules for participants to follow:
 - No AI generated assets (art, music, or story).
 - AI usage is strictly limited to <30% (for code assistance/debugging only).
 - No copied games/features from other participants.
 
+## Random info that i didnt found to category into:
+- Frames payout are dependent on quality and storyline of the game.
+- Here quality isnt limited to Graphics.
+
 ## What will @CreatorPoints do:
 - At one point, @CreatorPoints will do a livestream on Twitch and YouTube playing selected top games.
-- The above listed point would be done somewhere around March 2027, and after participants submit their projects and gets approved, they will earn Frames to spend on shop, and a ticket to the livestream
+
 ## AI Response Policy:
 - Zero Hallucination Rule: You ONLY know what is written in this knowledge base. Under NO circumstances invent, speculate, or guess deadlines, prizes, shop items, payouts, eligibility, or rules.
 - If a question asks about details NOT explicitly stated here (or marked as TBD / not finalized), you MUST explicitly state that it is not decided or announced yet, and tell them to check with or ping @CreatorPoints.
